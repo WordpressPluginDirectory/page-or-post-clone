@@ -1,14 +1,14 @@
 <?php
 /**
  * @package CF Page or Post Duplicator
- * @version 6.1
+ * @version 6.3
  */
 /*
 Plugin Name: CF Page or Post Duplicator
 Plugin URI: https://wordpress.org/plugins/page-or-post-clone/
 Description: Permite a duplicação de Artigos ou Páginas
 Author: Carlos Fazenda
-Version: 6.1
+Version: 6.3
 Author URI: http://carlosfazenda.com/
 */
 
@@ -44,7 +44,7 @@ function content_clone() {
     $current_user = wp_get_current_user();
     $new_post_author = $current_user->ID;
     
-    $allowed_roles = array('administrator');
+    $allowed_roles = array('administrator', 'editor');
     
     if ($post->post_author == $new_post_author || array_intersect($allowed_roles, $current_user->roles)) {
  
@@ -119,8 +119,9 @@ add_action('admin_action_content_clone', 'content_clone');
 
 function content_clone_link($actions, $post) {
     $current_user = wp_get_current_user();
-    
-    if ($post->post_author == $current_user->ID || in_array('administrator', $current_user->roles)) {
+    $allowed_roles = array('administrator', 'editor');
+
+    if ($post->post_author == $current_user->ID || array_intersect($allowed_roles, $current_user->roles)) {
         $actions['duplicate'] = '<a href="' . wp_nonce_url('admin.php?action=content_clone&post=' . $post->ID, basename(__FILE__), 'clone_nonce') . '" title="Clone!" rel="permalink">Clone</a>';
     }
     

@@ -3,8 +3,8 @@ Contributors: carlos fazenda
 Tags: page, post, duplicator, clone, duplication, clone post, clone page, post duplicator, page duplicator
 Donate link: https://www.paypal.me/carlosfazenda/10
 Requires at least: 4.5
-Tested up to: 6.2
-Stable tag: 5.8
+Tested up to: 6.7
+Stable tag: 6.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
